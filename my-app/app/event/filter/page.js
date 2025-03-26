@@ -1,4 +1,3 @@
-// app/events/filter/page.js
 import { useState } from "react";
 import EventList from "@/components/events/EventList";
 

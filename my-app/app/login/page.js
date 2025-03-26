@@ -17,17 +17,13 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simple form validation
     if (!formData.email || !formData.password) {
       setError("Tous les champs sont requis.");
       return;
     }
 
-    // TODO: Implement login logic here (e.g., API call)
     console.log("Login attempt:", formData);
 
-    // Simulate successful login and redirect
-    // Replace with actual login logic
     router.push("/");
   };
 

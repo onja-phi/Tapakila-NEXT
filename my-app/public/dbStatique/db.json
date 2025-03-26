@@ -1,0 +1,176 @@
+{
+    "events": [
+      {
+        "id": 1,
+        "image": "/Evenement1.jpg",
+        "title": "Concert de Jazz",
+        "date": "2025-05-01",
+        "location": "Paris",
+        "category": "Concert",
+        "organizator": "Canal7 Events"
+      },
+      {
+        "id": 2,
+        "image": "/Evenement2.jpg",
+        "title": "Festival de Danse",
+        "date": "2025-06-01",
+        "location": "Lyon",
+        "category": "Festival",
+        "organizator": "RH Prod"
+      },
+      {
+        "id": 3,
+        "image": "/Evenement3.jpg",
+        "title": "Exposition d'Art",
+        "date": "2025-07-01",
+        "location": "Paris",
+        "category": "Exposition",
+        "organizator": "Events Organizator"
+      },
+      {
+        "id": 4,
+        "image": "/evenement4.jpg",
+        "title": "Théâtre",
+        "date": "2025-08-01",
+        "location": "Lyon",
+        "category": "Théâtre",
+        "organizator": "Events Organizator"
+      },
+      {
+        "id": 5,
+        "image": "/evenement5.jpg",
+        "title": "Concert Rock",
+        "date": "2025-05-15",
+        "location": "Paris",
+        "category": "Concert",
+        "organizator": "Events Organizator"
+      },
+      {
+        "id": 6,
+        "image": "/evenement6.jpg",
+        "title": "Festival de Musique",
+        "date": "2025-06-10",
+        "location": "Paris",
+        "category": "Festival",
+        "organizator": "RH Prod"
+      },
+      {
+        "id": 7,
+        "image": "/evenement7.jpg",
+        "title": "Festival de Musique",
+        "date": "2025-07-10",
+        "location": "Lyon",
+        "category": "Festival",
+        "organizator": "Canal7 Events"
+      },
+      {
+        "id": 8,
+        "image": "/evenement8.jpg",
+        "title": "Festival de Musique",
+        "date": "2025-08-15",
+        "location": "Paris",
+        "category": "Festival",
+        "organizator": "Events Organizer"
+      },
+      {
+        "id": 9,
+        "image": "/Evenement9.jpg",
+        "title": "Concert de Jazz",
+        "date": "2025-05-01",
+        "location": "Paris",
+        "category": "Concert",
+        "organizator": "Festivity"
+      },
+      {
+        "id": 10,
+        "image": "/Evenement10.jpg",
+        "title": "Festival de Danse",
+        "date": "2025-06-01",
+        "location": "Lyon",
+        "category": "Festival",
+        "organizator": "Festivity"
+      },
+      {
+        "id": 11,
+        "image": "/Evenement11.jpg",
+        "title": "Exposition d'Art",
+        "date": "2025-07-01",
+        "location": "Paris",
+        "category": "Exposition",
+        "organizator": "Canal7 Events"
+      },
+      {
+        "id": 12,
+        "image": "/evenement12.jpg",
+        "title": "Théâtre",
+        "date": "2025-08-01",
+        "location": "Lyon",
+        "category": "Théâtre",
+        "organizator": "Events Organizer"
+      },
+      {
+        "id": 13,
+        "image": "/evenement13.jpg",
+        "title": "Concert Rock",
+        "date": "2025-05-15",
+        "location": "Paris",
+        "category": "Concert",
+        "organizator": "Festivity"
+      },
+      {
+        "id": 14,
+        "image": "/Evenement14.jpg",
+        "title": "Festival de Musique",
+        "date": "2025-06-10",
+        "location": "Paris",
+        "category": "Festival",
+        "organizator": "Canal7 Events"
+      },
+      {
+        "id": 15,
+        "image": "/Evenement15.jpg",
+        "title": "Festival de Musique",
+        "date": "2025-07-10",
+        "location": "Lyon",
+        "category": "Festival",
+        "organizator": "Events Organizer"
+      },
+      {
+        "id": 17,
+        "image": "/Evenement17.jpg",
+        "title": "Festival de Musique",
+        "date": "2025-08-15",
+        "location": "Paris",
+        "category": "Festival",
+        "organizator": "RH Prod"
+      },
+      {
+        "id": 18,
+        "image": "/Evenement18.jpg",
+        "title": "Concert de Jazz",
+        "date": "2025-05-01",
+        "location": "Paris",
+        "category": "Concert",
+        "organizator": "Canal7 Events"
+      },
+      {
+        "id": 19,
+        "image": "/Evenement19.jpg",
+        "title": "Festival de Danse",
+        "date": "2025-06-01",
+        "location": "Lyon",
+        "category": "Festival",
+        "organizator": "Festivity"
+      },
+      {
+        "id": 20,
+        "image": "/Evenement20.jpg",
+        "title": "Exposition d'Art",
+        "date": "2025-07-01",
+        "location": "Paris",
+        "category": "Exposition",
+        "organizator": "RH Prod"
+      }
+    ]
+}
+  

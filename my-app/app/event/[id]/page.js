@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { Calendar, Clock, MapPin, Users, Ticket } from "lucide-react";
 import Image from "next/image";
 import TicketSelection from "@/components/events/TicketSelection";
-import { useParams } from "next/navigation"; // Importation de useParams
+import { useParams } from "next/navigation";
 
 export default function EventDetails() {
-  const { id } = useParams(); // Utilisation de useParams pour récupérer l'id
+  const { id } = useParams();
 
   const [ticketCount, setTicketCount] = useState(1);
   const [timeLeft, setTimeLeft] = useState({
@@ -17,7 +17,6 @@ export default function EventDetails() {
     seconds: 0,
   });
 
-  // Données des événements
   const events = [
     {
       id: 1,
@@ -72,7 +71,7 @@ export default function EventDetails() {
       price: 40000,
       availableTickets: 150,
       description: "Une représentation exceptionnelle d'une pièce classique.",
-      image: "/evenement4.jpg",
+      image: "/Evenement4.jpg",
     },
     {
       id: 5,
@@ -86,7 +85,7 @@ export default function EventDetails() {
       availableTickets: 80,
       description:
         "Un concert rock exceptionnel avec les meilleurs groupes locaux.",
-      image: "/evenement5.jpg",
+      image: "/Evenement5.jpg",
     },
     {
       id: 6,
@@ -100,7 +99,7 @@ export default function EventDetails() {
       availableTickets: 120,
       description:
         "Un festival de musique variée avec des artistes de renommée.",
-      image: "/evenement6.jpg",
+      image: "/Evenement6.jpg",
     },
     {
       id: 7,
@@ -114,7 +113,7 @@ export default function EventDetails() {
       availableTickets: 120,
       description:
         "Un festival de musique variée avec des artistes de renommée.",
-      image: "/evenement6.jpg",
+      image: "/Evenement7.jpg",
     },
     {
       id: 8,
@@ -128,16 +127,180 @@ export default function EventDetails() {
       availableTickets: 120,
       description:
         "Un festival de musique variée avec des artistes de renommée.",
-      image: "/evenement6.jpg",
+      image: "/Evenement8.jpg",
+    },
+    {
+      id: 9,
+      title: "Concert de Jazz",
+      date: "15 Juin 2024",
+      time: "20:00",
+      location: "Salle de Concert, Antananarivo",
+      organizer: "Jazz Productions",
+      category: "Concert",
+      price: 50000,
+      availableTickets: 100,
+      description:
+        "Une soirée exceptionnelle de jazz avec les meilleurs artistes locaux. Venez profiter d'une ambiance unique et de musiques envoûtantes.",
+      image: "/Evenement9.jpg",
+    },
+    {
+      id: 10,
+      title: "Festival de Danse",
+      date: "20 Juin 2024",
+      time: "19:00",
+      location: "Centre Culturel",
+      organizer: "Dance Company",
+      category: "Spectacle",
+      price: 75000,
+      availableTickets: 50,
+      description:
+        "Un festival de danse exceptionnel avec les meilleurs danseurs du pays.",
+      image: "/Evenement10.jpg",
+    },
+    {
+      id: 11,
+      title: "Exposition d'Art",
+      date: "25 Juin 2024",
+      time: "10:00",
+      location: "Galerie d'Art",
+      organizer: "Art Gallery",
+      category: "Exposition",
+      price: 25000,
+      availableTickets: 200,
+      description:
+        "Une exposition unique présentant les œuvres des artistes contemporains.",
+      image: "/Evenement11.jpg",
+    },
+    {
+      id: 12,
+      title: "Théâtre",
+      date: "30 Juin 2024",
+      time: "19:30",
+      location: "Théâtre Municipal",
+      organizer: "Theatre Company",
+      category: "Concert",
+      price: 40000,
+      availableTickets: 150,
+      description: "Une représentation exceptionnelle d'une pièce classique.",
+      image: "/Evenement12.jpg",
+    },
+    {
+      id: 13,
+      title: "Concert Rock",
+      date: "5 Juillet 2024",
+      time: "21:00",
+      location: "Arena",
+      organizer: "Rock Productions",
+      category: "Spectacle",
+      price: 60000,
+      availableTickets: 80,
+      description:
+        "Un concert rock exceptionnel avec les meilleurs groupes locaux.",
+      image: "/Evenement13.jpg",
+    },
+    {
+      id: 14,
+      title: "Business Conference",
+      date: "3 Juillet 2024",
+      time: "18:00",
+      location: "Parc Municipal",
+      organizer: "Music Festival",
+      category: "Conférence",
+      price: 45000,
+      availableTickets: 120,
+      description:
+        "Un festival de musique variée avec des artistes de renommée.",
+      image: "/Evenement14.jpg",
+    },
+    {
+      id: 15,
+      title: "Festival de Musique",
+      date: "10 Juillet 2024",
+      time: "18:00",
+      location: "Parc Municipal",
+      organizer: "Music Festival",
+      category: "Spectacle",
+      price: 45000,
+      availableTickets: 120,
+      description:
+        "Un festival de musique variée avec des artistes de renommée.",
+      image: "/Evenement15.jpg",
+    },
+    {
+      id: 16,
+      title: "Festival de Musique",
+      date: "10 Juillet 2024",
+      time: "18:00",
+      location: "Parc Municipal",
+      organizer: "Music Festival",
+      category: "Spectacle",
+      price: 45000,
+      availableTickets: 120,
+      description:
+        "Un festival de musique variée avec des artistes de renommée.",
+      image: "/Evenement16.jpg",
+    },
+    {
+      id: 17,
+      title: "Concert de Jazz",
+      date: "15 Juin 2024",
+      time: "20:00",
+      location: "Salle de Concert, Antananarivo",
+      organizer: "Jazz Productions",
+      category: "Concert",
+      price: 50000,
+      availableTickets: 100,
+      description:
+        "Une soirée exceptionnelle de jazz avec les meilleurs artistes locaux. Venez profiter d'une ambiance unique et de musiques envoûtantes.",
+      image: "/Evenement17.jpg",
+    },
+    {
+      id: 18,
+      title: "Festival de Danse",
+      date: "20 Juin 2024",
+      time: "19:00",
+      location: "Centre Culturel",
+      organizer: "Dance Company",
+      category: "Spectacle",
+      price: 75000,
+      availableTickets: 50,
+      description:
+        "Un festival de danse exceptionnel avec les meilleurs danseurs du pays.",
+      image: "/Evenement18.jpg",
+    },
+    {
+      id: 19,
+      title: "Exposition d'Art",
+      date: "25 Juin 2024",
+      time: "10:00",
+      location: "Galerie d'Art",
+      organizer: "Art Gallery",
+      category: "Exposition",
+      price: 25000,
+      availableTickets: 200,
+      description:
+        "Une exposition unique présentant les œuvres des artistes contemporains.",
+      image: "/Evenement19.jpg",
+    },
+    {
+      id: 20,
+      title: "Théâtre",
+      date: "30 Juin 2024",
+      time: "19:30",
+      location: "Théâtre Municipal",
+      organizer: "Theatre Company",
+      category: "Concert",
+      price: 40000,
+      availableTickets: 150,
+      description: "Une représentation exceptionnelle d'une pièce classique.",
+      image: "/Evenement20.jpg",
     },
   ];
 
-  // Trouver l'événement basé sur l'ID extrait des params
   const event = events.find((e) => e.id === parseInt(id)) || events[0];
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      // Convertir le mois en français en numéro
       const monthMap = {
         Janvier: "01",
         Février: "02",
@@ -156,7 +319,6 @@ export default function EventDetails() {
       const [day, month, year] = event.date.split(" ");
       const [hours, minutes] = event.time.split(":");
 
-      // Créer une date avec le mois en numéro
       const eventDate = new Date(
         `${year}-${monthMap[month]}-${day.padStart(2, "0")}T${hours}:${minutes}`
       );
@@ -196,7 +358,6 @@ export default function EventDetails() {
   }, [event.date, event.time]);
 
   const handleReservation = () => {
-    // Logique de réservation à implémenter
     console.log(`Réservation de ${ticketCount} billets`);
   };
 
@@ -205,7 +366,7 @@ export default function EventDetails() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Image de l'événement */}
-          <div className="relative h-[400px] rounded-lg overflow-hidden">
+          <div className="relative h-[600px] rounded-lg overflow-hidden">
             <Image
               src={event.image}
               alt={event.title}
@@ -294,9 +455,9 @@ export default function EventDetails() {
               </p>
             </div>
           </div>
-
-          {/* Sélection des billets */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        </div>
+        <div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex justify-center">
             <TicketSelection id={event.id} />
           </div>
         </div>

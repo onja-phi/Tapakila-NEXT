@@ -1,77 +1,34 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function EventList({ filters = {} }) {
   const { search = "", location = "", eventType = "" } = filters;
 
-  const events = [
-    {
-      id: 1,
-      image: "/Evenement1.jpg",
-      title: "Concert de Jazz",
-      date: "2025-05-01",
-      location: "Paris",
-      category: "Concert",
-    },
-    {
-      id: 2,
-      image: "/Evenement2.jpg",
-      title: "Festival de Danse",
-      date: "2025-06-01",
-      location: "Lyon",
-      category: "Festival",
-    },
-    {
-      id: 3,
-      image: "/Evenement3.jpg",
-      title: "Exposition d'Art",
-      date: "2025-07-01",
-      location: "Paris",
-      category: "Exposition",
-    },
-    {
-      id: 4,
-      image: "/evenement4.jpg",
-      title: "Théâtre",
-      date: "2025-08-01",
-      location: "Lyon",
-      category: "Théâtre",
-    },
-    {
-      id: 5,
-      image: "/evenement5.jpg",
-      title: "Concert Rock",
-      date: "2025-05-15",
-      location: "Paris",
-      category: "Concert",
-    },
-    {
-      id: 6,
-      image: "/evenement6.jpg",
-      title: "Festival de Musique",
-      date: "2025-06-10",
-      location: "Paris",
-      category: "Festival",
-    },
-    {
-      id: 7,
-      image: "/evenement7.jpg",
-      title: "Festival de Musique",
-      date: "2025-07-10",
-      location: "Lyon",
-      category: "Festival",
-    },
-    {
-      id: 8,
-      image: "/evenement8.jpg",
-      title: "Festival de Musique",
-      date: "2025-08-15",
-      location: "Paris",
-      category: "Festival",
-    },
-  ];
+  const [events, setEvents] = useState([]);
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const [startIndex, setStartIndex] = useState(0);
+
+  useEffect(() => {
+    async function fetchEvents() {
+      const res = await fetch("/dbStatique/db.json");
+      const data = await res.json();
+      setEvents(data.events || []);
+    }
+    fetchEvents();
+  }, []);
+
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 640) setItemsPerView(1);
+      else if (window.innerWidth < 1024) setItemsPerView(2);
+      else setItemsPerView(3);
+    };
+    updateItemsPerView();
+    window.addEventListener("resize", updateItemsPerView);
+    return () => window.removeEventListener("resize", updateItemsPerView);
+  }, []);
 
   const filteredEvents = events.filter(
     (event) =>
@@ -83,59 +40,67 @@ export default function EventList({ filters = {} }) {
         event.category.toLowerCase() === eventType.toLowerCase())
   );
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalSlides = Math.ceil(filteredEvents.length / itemsPerView);
 
-  const nextEvent = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredEvents.length);
-  };
+  const next = () =>
+    setStartIndex((prev) => (prev + 1 < totalSlides ? prev + 1 : 0));
+  const prev = () =>
+    setStartIndex((prev) => (prev - 1 >= 0 ? prev - 1 : totalSlides - 1));
 
-  const prevEvent = () => {
-    setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + filteredEvents.length) % filteredEvents.length
-    );
-  };
-
-  // On génère trois événements uniques sans duplication
-  const eventsToDisplay = [
-    filteredEvents[currentIndex % filteredEvents.length],
-    filteredEvents[(currentIndex + 1) % filteredEvents.length],
-    filteredEvents[(currentIndex + 2) % filteredEvents.length],
-  ];
+  const visibleEvents = filteredEvents.slice(
+    startIndex * itemsPerView,
+    (startIndex + 1) * itemsPerView
+  );
 
   return (
-    <div className="relative w-full mt-10 mb-10">
-      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6">
-        {eventsToDisplay.map((event, index) => (
-          <div
-            key={`${event.id}-${index}`} // Utilisation de id + index pour garantir une clé unique
-            className="relative group w-full mx-auto rounded-lg overflow-hidden cursor-pointer h-[400px]" // Hauteur uniforme
-          >
-            <Link href={`/event/${event.id}`}>
-              <Image
-                src={event.image}
-                alt={event.title}
-                layout="intrinsic"
-                width={500}
-                height={300}
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-            </Link>
-          </div>
-        ))}
-      </div>
+    <div className="relative container mx-auto p-6 overflow-hidden">
+      <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">
+        EVENTS FILTERED
+      </h2>
 
-      <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center transform -translate-y-1/2">
+      <div className="relative flex items-center">
         <button
-          onClick={prevEvent}
-          className="bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
+          onClick={prev}
+          className="absolute left-0 -ml-5 z-10 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
         >
           ◀
         </button>
 
+        <div className="overflow-hidden w-full">
+          <div className="flex flex-wrap justify-center gap-6 transition-transform duration-300">
+            {visibleEvents.map((event) => (
+              <Link
+                key={event.id}
+                href={`/event/${event.id}`}
+                className="flex-1 w-full sm:w-1/2 md:w-1/2 lg:w-1/3"
+              >
+                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 p-4 cursor-pointer">
+                  <div className="relative h-[500px] sm:h-[300px] md:h-[300px] lg:h-[320px]">
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-md"
+                    />
+                  </div>
+
+                  <div className="mt-4 text-center">
+                    <h3 className="text-md sm:text-lg font-semibold text-gray-900 dark:text-white">
+                      {event.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+                      {event.date} - {event.location}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
         <button
-          onClick={nextEvent}
-          className="bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
+          onClick={next}
+          className="absolute right-0 -mr-5 z-10 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
         >
           ▶
         </button>

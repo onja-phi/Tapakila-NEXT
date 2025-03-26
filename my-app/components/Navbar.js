@@ -30,15 +30,15 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[hsl(0,75%,76%)] to-[hsl(0,55%,56%)] dark:from-gray-900 dark:to-gray-700 shadow-md">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[#E6B2BA] to-[hsl(0,55%,56%)] dark:from-gray-900 dark:to-gray-700 shadow-md">
       <div className="flex justify-between items-center p-4 container mx-auto">
         <div className="flex items-center space-x-4">
           <Image
             src="/logo.png"
             alt="TAPAKILA Logo"
-            width={48} // Taille en pixels (équivalent à w-12)
-            height={48} // Taille en pixels (équivalent à h-12)
-            className="rounded-full -ml-6"
+            width={48}
+            height={48}
+            className="rounded-full ml-4 sm:ml-5"
           />
           <span className="text-2xl font-bold text-white">TAPAKILA</span>
         </div>
@@ -77,7 +77,7 @@ export default function Navbar() {
         </button>
 
         <button
-          className="text-white -mr-3 text-3xl"
+          className="text-white lg:-mr-10 text-3xl"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? "✖" : "☰"}
@@ -85,7 +85,7 @@ export default function Navbar() {
       </div>
 
       {isMenuOpen && (
-        <div className="absolute top-16 right-0 w-50% bg-[hsl(0,75%,89%)] dark:bg-gray-800 text-black dark:text-white shadow-md lg:w-auto lg:right-4 lg:top-auto lg:bg-[hsl(0,75%,89%)] dark:lg:bg-gray-800 lg:shadow-none">
+        <div className="absolute top-16 right-0 bg-[hsl(0,75%,89%)] dark:bg-gray-800 text-black dark:text-white shadow-md lg:w-auto lg:right-4 lg:top-auto lg:bg-[hsl(0,75%,89%)] dark:lg:bg-gray-800 lg:shadow-none">
           <ul className="space-y-4 p-4 lg:space-y-0 lg:space-x-4 lg:p-0">
             <li className="lg:hidden">
               <Link href="/">

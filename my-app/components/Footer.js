@@ -2,9 +2,9 @@
 
 export default function Footer() {
   return (
-    <section className="pt-16 pb-7 bg-[#cd5151] dark:bg-gray-800">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between pb-14 border-b border-gray-500 gap-8">
+    <section className="pt-16 pb-7 bg-[#D2665A] dark:bg-gray-800">
+      <div className="mx-auto max-w-7xl px sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between -mt-10 pb-5 border-b border-white gap-8">
           <span className="text-white text-4xl font-bold">TAPAKILA</span>
 
           <div className="flex items-center gap-4">
@@ -84,7 +84,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="py-14 flex flex-col lg:flex-row justify-between gap-8 border-b border-gray-800">
+        <div className="py-14 flex -pt-5 flex-col lg:flex-row justify-between gap-8 border-b border-white">
           <div className="w-full lg:w-auto flex flex-col sm:flex-row lg:items-start items-center gap-6 md:gap-12 lg:gap-24">
             <div className="text-center lg:text-left">
               {["DEVENIR ORGANISATEUR", "CONTACTER NOUS", "A PROPOS"].map(
