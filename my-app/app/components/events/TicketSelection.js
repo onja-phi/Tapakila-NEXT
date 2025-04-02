@@ -60,13 +60,15 @@ const TicketSelection = ({ id }) => {
 
   return (
     <div className="w-full max-w-7xl mx-auto mt-10 mb-10 px-4 lg:px-8">
-      <h2 className="text-2xl font-bold mb-6 mt-10">Sélection des Billets</h2>
+      <h2 className="text-2xl font-bold justify-center mb-6 mt-10">
+        Sélection des Billets
+      </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 dark:text-white md:grid-cols-3 gap-6">
         {ticketTypes.map((ticket) => (
           <div
             key={ticket.id}
-            className="border rounded-lg p-6 flex flex-col justify-between"
+            className="border bg-red-100 dark:bg-gray-800 rounded-lg p-6 flex flex-col justify-between"
           >
             <div>
               <div className="flex justify-between items-start mb-2">
@@ -76,7 +78,7 @@ const TicketSelection = ({ id }) => {
                 </div>
                 <span className="font-bold">{ticket.price}€</span>
               </div>
-              <div className="text-sm text-gray-100 mb-2">
+              <div className="text-sm dark:text-white text-gray-900 mb-2">
                 {ticket.available} disponibles
               </div>
             </div>
@@ -120,9 +122,10 @@ const TicketSelection = ({ id }) => {
         </div>
 
         <button
+          href="/login"
           onClick={handleReservation}
           disabled={calculateTotal() === 0}
-          className="w-[200px] bg-red-800 text-white dark:bg-gray-700 dark:hover:bg-red-300 hover:bg-red-800 justify-center py-3 px-4 rounded-lg font-semibold disabled:cursor-not-allowed"
+          className="w-[200px] bg-red-800 text-white hover:bg-red-600 justify-center py-3 px-4 rounded-lg font-semibold disabled:cursor-not-allowed"
         >
           Réserver
         </button>

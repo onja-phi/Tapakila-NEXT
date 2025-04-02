@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import Link from "next/link";
 import { Sun, Moon } from "lucide-react";
 import Image from "next/image";
@@ -102,7 +102,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="lg:hidden">
-              <Link href="/connecter">
+              <Link href="/login">
                 <Button variant="link" className="w-full text-left">
                   SE CONNECTER
                 </Button>
@@ -120,7 +120,7 @@ export default function Navbar() {
               <Link href="/about" passHref>
                 <Button
                   variant="link"
-                  className="w-full text-left hover:text-blue-600 focus:outline-none"
+                  className="w-full text-left focus:outline-none"
                 >
                   ABOUT
                 </Button>

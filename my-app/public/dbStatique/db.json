@@ -1,175 +1,224 @@
 {
     "events": [
-      {
-        "id": 1,
-        "image": "/Evenement1.jpg",
-        "title": "Concert de Jazz",
-        "date": "2025-05-01",
-        "location": "Paris",
-        "category": "Concert",
-        "organizator": "Canal7 Events"
-      },
-      {
-        "id": 2,
-        "image": "/Evenement2.jpg",
-        "title": "Festival de Danse",
-        "date": "2025-06-01",
-        "location": "Lyon",
-        "category": "Festival",
-        "organizator": "RH Prod"
-      },
-      {
-        "id": 3,
-        "image": "/Evenement3.jpg",
-        "title": "Exposition d'Art",
-        "date": "2025-07-01",
-        "location": "Paris",
-        "category": "Exposition",
-        "organizator": "Events Organizator"
-      },
-      {
-        "id": 4,
-        "image": "/evenement4.jpg",
-        "title": "Théâtre",
-        "date": "2025-08-01",
-        "location": "Lyon",
-        "category": "Théâtre",
-        "organizator": "Events Organizator"
-      },
-      {
-        "id": 5,
-        "image": "/evenement5.jpg",
-        "title": "Concert Rock",
-        "date": "2025-05-15",
-        "location": "Paris",
-        "category": "Concert",
-        "organizator": "Events Organizator"
-      },
-      {
-        "id": 6,
-        "image": "/evenement6.jpg",
-        "title": "Festival de Musique",
-        "date": "2025-06-10",
-        "location": "Paris",
-        "category": "Festival",
-        "organizator": "RH Prod"
-      },
-      {
-        "id": 7,
-        "image": "/evenement7.jpg",
-        "title": "Festival de Musique",
-        "date": "2025-07-10",
-        "location": "Lyon",
-        "category": "Festival",
-        "organizator": "Canal7 Events"
-      },
-      {
-        "id": 8,
-        "image": "/evenement8.jpg",
-        "title": "Festival de Musique",
-        "date": "2025-08-15",
-        "location": "Paris",
-        "category": "Festival",
-        "organizator": "Events Organizer"
-      },
-      {
-        "id": 9,
-        "image": "/Evenement9.jpg",
-        "title": "Concert de Jazz",
-        "date": "2025-05-01",
-        "location": "Paris",
-        "category": "Concert",
-        "organizator": "Festivity"
-      },
-      {
-        "id": 10,
-        "image": "/Evenement10.jpg",
-        "title": "Festival de Danse",
-        "date": "2025-06-01",
-        "location": "Lyon",
-        "category": "Festival",
-        "organizator": "Festivity"
-      },
-      {
-        "id": 11,
-        "image": "/Evenement11.jpg",
-        "title": "Exposition d'Art",
-        "date": "2025-07-01",
-        "location": "Paris",
-        "category": "Exposition",
-        "organizator": "Canal7 Events"
-      },
-      {
-        "id": 12,
-        "image": "/evenement12.jpg",
-        "title": "Théâtre",
-        "date": "2025-08-01",
-        "location": "Lyon",
-        "category": "Théâtre",
-        "organizator": "Events Organizer"
-      },
-      {
-        "id": 13,
-        "image": "/evenement13.jpg",
-        "title": "Concert Rock",
-        "date": "2025-05-15",
-        "location": "Paris",
-        "category": "Concert",
-        "organizator": "Festivity"
-      },
-      {
-        "id": 14,
-        "image": "/Evenement14.jpg",
-        "title": "Festival de Musique",
-        "date": "2025-06-10",
-        "location": "Paris",
-        "category": "Festival",
-        "organizator": "Canal7 Events"
-      },
-      {
-        "id": 15,
-        "image": "/Evenement15.jpg",
-        "title": "Festival de Musique",
-        "date": "2025-07-10",
-        "location": "Lyon",
-        "category": "Festival",
-        "organizator": "Events Organizer"
-      },
-      {
-        "id": 17,
-        "image": "/Evenement17.jpg",
-        "title": "Festival de Musique",
-        "date": "2025-08-15",
-        "location": "Paris",
-        "category": "Festival",
-        "organizator": "RH Prod"
-      },
-      {
-        "id": 18,
-        "image": "/Evenement18.jpg",
-        "title": "Concert de Jazz",
-        "date": "2025-05-01",
-        "location": "Paris",
-        "category": "Concert",
-        "organizator": "Canal7 Events"
-      },
+    {
+      "id": 1,
+      "image": "/Evenement1.jpg",
+      "title": "Concert de Jazz",
+      "date": "2025-03-20",
+      "time": "19:30",
+      "location": "Paris",
+      "category": "Concert",
+      "organizator": "Canal7 Events",
+      "description": "Une soirée de jazz envoûtante avec des musiciens de renommée mondiale."
+    },
+    {
+      "id": 2,
+      "image": "/Evenement2.jpg",
+      "title": "Festival de Danse",
+      "date": "2025-04-10",
+      "time": "17:00",
+      "location": "Lyon",
+      "category": "Festival",
+      "organizator": "RH Prod",
+      "description": "Un festival spectaculaire mettant en avant des danseurs talentueux."
+    },
+    {
+      "id": 3,
+      "image": "/Evenement3.jpg",
+      "title": "Exposition d'Art",
+      "date": "2025-04-15",
+      "time": "14:00",
+      "location": "Paris",
+      "category": "Exposition",
+      "organizator": "Events Organizator",
+      "description": "Une collection d'œuvres d'art contemporain à ne pas manquer."
+    },
+    {
+      "id": 4,
+      "image": "/evenement4.jpg",
+      "title": "Théâtre",
+      "date": "2025-04-20",
+      "time": "20:00",
+      "location": "Lyon",
+      "category": "Théâtre",
+      "organizator": "Events Organizator",
+      "description": "Une pièce de théâtre captivante interprétée par des artistes talentueux."
+    },
+    {
+      "id": 5,
+      "image": "/evenement5.jpg",
+      "title": "Concert Rock",
+      "date": "2025-04-25",
+      "time": "21:00",
+      "location": "Paris",
+      "category": "Concert",
+      "organizator": "Events Organizator",
+      "description": "Un concert explosif avec des groupes de rock incontournables."
+    },
+    {
+      "id": 6,
+      "image": "/evenement6.jpg",
+      "title": "Festival de Musique",
+      "date": "2025-05-05",
+      "time": "18:00",
+      "location": "Paris",
+      "category": "Festival",
+      "organizator": "RH Prod",
+      "description": "Une célébration musicale avec une programmation variée et festive."
+    },
+    {
+      "id": 7,
+      "image": "/evenement7.jpg",
+      "title": "Conférence sur l'IA",
+      "date": "2025-05-12",
+      "time": "09:00",
+      "location": "Marseille",
+      "category": "Conférence",
+      "organizator": "TechWorld",
+      "description": "Un événement incontournable sur les avancées et l'avenir de l'intelligence artificielle."
+    },
+    {
+      "id": 8,
+      "image": "/evenement8.jpg",
+      "title": "Festival de Cinéma",
+      "date": "2025-05-20",
+      "time": "16:00",
+      "location": "Nice",
+      "category": "Festival",
+      "organizator": "CinéPassion",
+      "description": "Découvrez des avant-premières et rencontrez des réalisateurs renommés."
+    },
+    {
+      "id": 9,
+      "image": "/Evenement9.jpg",
+      "title": "Salon du Livre",
+      "date": "2025-06-01",
+      "time": "10:00",
+      "location": "Paris",
+      "category": "Salon",
+      "organizator": "Éditions Francophones",
+      "description": "Une rencontre littéraire avec des auteurs célèbres et des séances de dédicaces."
+    },
+    {
+      "id": 10,
+      "image": "/Evenement10.jpg",
+      "title": "Festival de Danse",
+      "date": "2025-06-10",
+      "time": "18:30",
+      "location": "Lyon",
+      "category": "Festival",
+      "organizator": "Festivity",
+      "description": "Un spectacle de danse contemporaine et classique à couper le souffle."
+    },
+    {
+      "id": 11,
+      "image": "/Evenement11.jpg",
+      "title": "Exposition de Photographie",
+      "date": "2025-06-20",
+      "time": "15:00",
+      "location": "Bordeaux",
+      "category": "Exposition",
+      "organizator": "ArtView",
+      "description": "Une exposition mettant en lumière le travail de photographes talentueux."
+    },
+    {
+      "id": 12,
+      "image": "/evenement12.jpg",
+      "title": "Théâtre",
+      "date": "2025-07-05",
+      "time": "19:00",
+      "location": "Lille",
+      "category": "Théâtre",
+      "organizator": "Events Organizer",
+      "description": "Une comédie théâtrale hilarante qui promet une soirée de rires."
+    },
+    {
+      "id": 13,
+      "image": "/evenement13.jpg",
+      "title": "Concert Rock",
+      "date": "2025-07-15",
+      "time": "20:30",
+      "location": "Paris",
+      "category": "Concert",
+      "organizator": "Festivity",
+      "description": "Un show live époustouflant avec des légendes du rock."
+    },
+    {
+      "id": 14,
+      "image": "/Evenement14.jpg",
+      "title": "Festival de Musique",
+      "date": "2025-08-01",
+      "time": "17:00",
+      "location": "Marseille",
+      "category": "Festival",
+      "organizator": "Canal7 Events",
+      "description": "Trois jours de musique en plein air avec des artistes internationaux."
+    },
+    {
+      "id": 15,
+      "image": "/Evenement15.jpg",
+      "title": "Festival de Musique",
+      "date": "2025-08-10",
+      "time": "20:00",
+      "location": "Lyon",
+      "category": "Festival",
+      "organizator": "Events Organizer",
+      "description": "Un festival éclectique avec des performances live incroyables."
+    },
+    {
+      "id": 16,
+      "image": "/Evenement16.jpg",
+      "title": "Conférence Tech",
+      "date": "2025-09-05",
+      "time": "09:30",
+      "location": "Toulouse",
+      "category": "Conférence",
+      "organizator": "TechWorld",
+      "description": "Découvrez les dernières innovations technologiques et tendances du numérique."
+    },
+    {
+      "id": 17,
+      "image": "/Evenement17.jpg",
+      "title": "Salon de l'Innovation",
+      "date": "2025-09-15",
+      "time": "10:00",
+      "location": "Paris",
+      "category": "Salon",
+      "organizator": "RH Prod",
+      "description": "Un événement incontournable pour les passionnés de nouvelles technologies."
+    },
+    {
+      "id": 18,
+      "image": "/Evenement18.jpg",
+      "title": "Opéra en Plein Air",
+      "date": "2025-10-01",
+      "time": "21:00",
+      "location": "Bordeaux",
+      "category": "Spectacle",
+      "organizator": "Canal7 Events",
+      "description": "Une performance magique sous les étoiles."
+    },
       {
         "id": 19,
         "image": "/Evenement19.jpg",
         "title": "Festival de Danse",
         "date": "2025-06-01",
+        "time": "18:30",
         "location": "Lyon",
         "category": "Festival",
-        "organizator": "Festivity"
+        "organizator": "Festivity",
+        "description": "Un festival de danse contemporaine avec des performances époustouflantes."
       },
       {
         "id": 20,
         "image": "/Evenement20.jpg",
         "title": "Exposition d'Art",
         "date": "2025-07-01",
+        "time": "14:00",
         "location": "Paris",
         "category": "Exposition",
-        "organizator": "RH Prod"
+        "organizator": "RH Prod",
+        "description": "Une exposition d'art contemporain avec des artistes émergents."
       }
     ]
 }

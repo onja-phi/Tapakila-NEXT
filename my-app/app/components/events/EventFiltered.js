@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function EventList({ filters = {} }) {
+export default function EventFiltered({ filters = {} }) {
   const { search = "", location = "", eventType = "" } = filters;
 
   const [events, setEvents] = useState([]);

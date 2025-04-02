@@ -1,9 +1,9 @@
-import EventList from "@/components/events/EventList";
+import AllEvents from "../components/events/AllEvents";
 
 export default function eventPage() {
   return (
     <div className=" pt-24 pb-10">
-      <EventList />
+      <AllEvents />
     </div>
   );
 }
