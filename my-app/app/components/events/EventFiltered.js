@@ -3,107 +3,175 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function EventFiltered({ filters = {} }) {
-  const { search = "", location = "", eventType = "" } = filters;
-
+export default function EventFiltered({ searchParams, activeFilter }) {
   const [events, setEvents] = useState([]);
-  const [itemsPerView, setItemsPerView] = useState(3);
-  const [startIndex, setStartIndex] = useState(0);
+  const [groupedEvents, setGroupedEvents] = useState({});
+  const [currentPage, setCurrentPage] = useState({});
+  const ITEMS_PER_PAGE = 3;
 
   useEffect(() => {
     async function fetchEvents() {
-      const res = await fetch("/dbStatique/db.json");
-      const data = await res.json();
-      setEvents(data.events || []);
+      try {
+        const res = await fetch("/api/events");
+        if (!res.ok) throw new Error("Failed to fetch events");
+        const data = await res.json();
+        setEvents(data);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
     }
     fetchEvents();
   }, []);
 
   useEffect(() => {
-    const updateItemsPerView = () => {
-      if (window.innerWidth < 640) setItemsPerView(1);
-      else if (window.innerWidth < 1024) setItemsPerView(2);
-      else setItemsPerView(3);
-    };
-    updateItemsPerView();
-    window.addEventListener("resize", updateItemsPerView);
-    return () => window.removeEventListener("resize", updateItemsPerView);
-  }, []);
+    if (searchParams?.search) {
+      const filtered = events.filter((event) =>
+        event.title.toLowerCase().includes(searchParams.search.toLowerCase())
+      );
+      setGroupedEvents({ "RESULTAT DE RECHERCHE": filtered });
+      return;
+    }
 
-  const filteredEvents = events.filter(
-    (event) =>
-      (search === "" ||
-        event.title.toLowerCase().includes(search.toLowerCase())) &&
-      (location === "" ||
-        event.location.toLowerCase().includes(location.toLowerCase())) &&
-      (eventType === "" ||
-        event.category.toLowerCase() === eventType.toLowerCase())
-  );
+    if (!activeFilter) {
+      setGroupedEvents({ "": events });
+      return;
+    }
 
-  const totalSlides = Math.ceil(filteredEvents.length / itemsPerView);
+    switch (activeFilter) {
+      case "category":
+        const byCategory = {};
+        events.forEach((event) => {
+          const categoryName = event.category.toUpperCase();
+          if (!byCategory[categoryName]) byCategory[categoryName] = [];
+          byCategory[categoryName].push(event);
+        });
+        setGroupedEvents(byCategory);
+        break;
 
-  const next = () =>
-    setStartIndex((prev) => (prev + 1 < totalSlides ? prev + 1 : 0));
-  const prev = () =>
-    setStartIndex((prev) => (prev - 1 >= 0 ? prev - 1 : totalSlides - 1));
+      case "location":
+        const byLocation = {};
+        events.forEach((event) => {
+          const locationName = event.location.toUpperCase();
+          if (!byLocation[locationName]) byLocation[locationName] = [];
+          byLocation[locationName].push(event);
+        });
+        setGroupedEvents(byLocation);
+        break;
 
-  const visibleEvents = filteredEvents.slice(
-    startIndex * itemsPerView,
-    (startIndex + 1) * itemsPerView
-  );
+      case "date":
+        const byMonth = {};
+        events.forEach((event) => {
+          const month = new Date(event.date)
+            .toLocaleString("fr-FR", {
+              month: "long",
+              year: "numeric",
+            })
+            .toUpperCase();
+          if (!byMonth[month]) byMonth[month] = [];
+          byMonth[month].push(event);
+        });
+        setGroupedEvents(byMonth);
+        break;
+
+      default:
+        setGroupedEvents({});
+    }
+  }, [events, activeFilter, searchParams]);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("fr-FR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  const handlePageChange = (groupTitle, direction) => {
+    const totalPages = Math.ceil(
+      groupedEvents[groupTitle].length / ITEMS_PER_PAGE
+    );
+    setCurrentPage((prev) => ({
+      ...prev,
+      [groupTitle]:
+        direction === "next"
+          ? ((prev[groupTitle] || 0) + 1) % totalPages
+          : ((prev[groupTitle] || 0) - 1 + totalPages) % totalPages,
+    }));
+  };
 
   return (
-    <div className="relative container mx-auto p-6 overflow-hidden">
+    <div className="relative container mx-auto p-6">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">
         EVENTS FILTERED
       </h2>
 
-      <div className="relative flex items-center">
-        <button
-          onClick={prev}
-          className="absolute left-0 -ml-5 z-10 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
-        >
-          ◀
-        </button>
+      <div className="space-y-8">
+        {Object.entries(groupedEvents).map(([groupTitle, eventGroup]) => (
+          <div key={groupTitle} className="space-y-4">
+            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
+              {groupTitle}
+            </h3>
+            <div className="relative">
+              {eventGroup.length > ITEMS_PER_PAGE && (
+                <button
+                  onClick={() => handlePageChange(groupTitle, "prev")}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 z-10 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
+                >
+                  ◀
+                </button>
+              )}
 
-        <div className="overflow-hidden w-full">
-          <div className="flex flex-wrap justify-center gap-6 transition-transform duration-300">
-            {visibleEvents.map((event) => (
-              <Link
-                key={event.id}
-                href={`/event/${event.id}`}
-                className="flex-1 w-full sm:w-1/2 md:w-1/2 lg:w-1/3"
+              <div
+                id={`scroll-${groupTitle}`}
+                className="grid grid-cols-3 gap-6"
               >
-                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 p-4 cursor-pointer">
-                  <div className="relative h-[500px] sm:h-[300px] md:h-[300px] lg:h-[320px]">
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-md"
-                    />
-                  </div>
+                {eventGroup
+                  .slice(
+                    (currentPage[groupTitle] || 0) * ITEMS_PER_PAGE,
+                    (currentPage[groupTitle] || 0) * ITEMS_PER_PAGE +
+                      ITEMS_PER_PAGE
+                  )
+                  .map((event) => (
+                    <Link
+                      key={event.id}
+                      href={`/event/${event.id}`}
+                      className="w-full"
+                    >
+                      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 p-3">
+                        <div className="relative h-[200px]">
+                          <Image
+                            src={event.image}
+                            alt={event.title}
+                            layout="fill"
+                            objectFit="cover"
+                            className="rounded-md"
+                          />
+                        </div>
+                        <div className="mt-3 text-center">
+                          <h3 className="text-sm font-semibold truncate">
+                            {event.title}
+                          </h3>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">
+                            {formatDate(event.date)} - {event.location}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+              </div>
 
-                  <div className="mt-4 text-center">
-                    <h3 className="text-md sm:text-lg font-semibold text-gray-900 dark:text-white">
-                      {event.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-                      {event.date} - {event.location}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+              {eventGroup.length > ITEMS_PER_PAGE && (
+                <button
+                  onClick={() => handlePageChange(groupTitle, "next")}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 z-10 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
+                >
+                  ▶
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-        <button
-          onClick={next}
-          className="absolute right-0 -mr-5 z-10 bg-gray-700 text-white p-2 rounded-full shadow-lg hover:bg-gray-800"
-        >
-          ▶
-        </button>
+        ))}
       </div>
     </div>
   );

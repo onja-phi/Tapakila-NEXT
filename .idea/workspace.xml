@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6de81deb-08e9-44f3-8421-c9103dd2d684" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/my-app/app/components/Hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/components/Hero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/app/components/events/AllEvents.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/components/events/AllEvents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/app/components/events/EventFiltered.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/components/events/EventFiltered.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/app/components/events/TicketSelection.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/components/events/TicketSelection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/app/event/[id]/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/event/[id]/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/app/event/filter/page.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/app/login/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/login/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/app/organize/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/organize/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/app/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/Footer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/Hero.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/Navbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/events/AllEvents.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/events/EventList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/events/TicketSelection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/ui/button.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/components/ui/dropdown-menu.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/public/dbStatique/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/public/dbStatique/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2v8miciZZTay2K1yzGbc1vgknDL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,7 +37,11 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/DELL/.vscode/Tapakila",
+    "last_opened_file_path": "C:/Users/DELL/IdeaProjects/Spring_new_project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -58,6 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743535203617</updated>
       <workItem from="1743535204946" duration="51000" />
+      <workItem from="1744003697994" duration="512000" />
     </task>
     <servers />
   </component>

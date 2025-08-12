@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Calendar, Clock, MapPin, Users, Ticket } from "lucide-react";
 import Image from "next/image";
-import TicketSelection from "../../components/events/TicketSelection";
+import TicketSelection from "@/app/components/events/TicketSelection";
 import { useParams } from "next/navigation";
 
 export default function EventDetails() {
@@ -18,87 +18,73 @@ export default function EventDetails() {
   useEffect(() => {
     async function fetchEvent() {
       try {
-        console.log("Fetching events...");
-
-        const res = await fetch("/dbStatique/db.json");
+        console.log("Fetching event with ID:", id);
+        const res = await fetch(`/api/events/${id}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
         const data = await res.json();
-        console.log("Fetched events:", data.events);
-
-        const foundEvent = data.events.find((e) => e.id === Number(id));
-        console.log("Found Event:", foundEvent);
-
-        setEvent(foundEvent || null);
+        console.log("Received event data:", data);
+        setEvent(data);
       } catch (error) {
-        console.error("Error fetching events:", error);
+        console.error("Error fetching event:", error);
       }
     }
 
-    fetchEvent();
+    if (id) {
+      fetchEvent();
+    }
   }, [id]);
 
   useEffect(() => {
-    if (!event?.date || !event?.time) return;
+    if (!event?.date) return;
 
     const calculateTimeLeft = () => {
-      const monthMap = {
-        Janvier: "01",
-        Février: "02",
-        Mars: "03",
-        Avril: "04",
-        Mai: "05",
-        Juin: "06",
-        Juillet: "07",
-        Août: "08",
-        Septembre: "09",
-        Octobre: "10",
-        Novembre: "11",
-        Décembre: "12",
-      };
-
-      const [day, month, year] = event.date.split(" ");
-      const [hours, minutes] = event.time.split(":");
-
-      const eventDate = new Date(
-        `${year}-${monthMap[month]}-${day.padStart(2, "0")}T${hours}:${minutes}`
-      );
-
+      const eventDate = new Date(event.date);
       const now = new Date();
       const difference = eventDate - now;
 
-      setTimeLeft({
-        days: Math.max(0, Math.floor(difference / (1000 * 60 * 60 * 24))),
-        hours: Math.max(
-          0,
-          Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        ),
-        minutes: Math.max(
-          0,
-          Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-        ),
-        seconds: Math.max(0, Math.floor((difference % (1000 * 60)) / 1000)),
-      });
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          ),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        });
+      }
     };
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, [event]);
 
   if (!event) {
     return (
-      <div className="min-h-screen flex justify-center items-center text-xl font-bold">
-        Loading event...
+      <div className="min-h-screen flex justify-center items-center">
+        <div className="text-xl font-bold">Loading event...</div>
       </div>
     );
   }
+
+  const formatDate = (dateString) => {
+    const options = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+    return new Date(dateString).toLocaleDateString("fr-FR", options);
+  };
 
   return (
     <div className="min-h-screen bg-bgColor dark:bg-gray-900 pt-40">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="relative h-[600px] rounded-lg overflow-hidden">
+          <div className="relative h-[580px] rounded-lg overflow-hidden">
             <Image
+              sm-height={900}
               src={event.image}
               alt={event.title}
               fill
@@ -114,11 +100,11 @@ export default function EventDetails() {
             <div className="space-y-4">
               <div className="flex items-center space-x-2 text-greyText dark:text-gray-300">
                 <Calendar size={20} />
-                <span>{event.date}</span>
+                <span>{formatDate(event.date)}</span>
               </div>
               <div className="flex items-center space-x-2 text-greyText dark:text-gray-300">
                 <Clock size={20} />
-                <span>{event.time ? event.time : "No time available"}</span>
+                <span>{event.time}</span>
               </div>
               <div className="flex items-center space-x-2 text-greyText dark:text-gray-300">
                 <MapPin size={20} />
@@ -126,7 +112,7 @@ export default function EventDetails() {
               </div>
               <div className="flex items-center space-x-2 text-greyText dark:text-gray-300">
                 <Users size={20} />
-                <span>Organisé par {event.organizer}</span>
+                <span>Organisé par {event.organizator}</span>
               </div>
               <div className="flex items-center space-x-2 text-greyText dark:text-gray-300">
                 <Ticket size={20} />
@@ -181,15 +167,12 @@ export default function EventDetails() {
                 Description
               </h2>
               <p className="text-greyText dark:text-gray-300">
-                {event.description
-                  ? event.description
-                  : "No description available"}
+                {event.description}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Add the TicketSelection Component here */}
         <TicketSelection id={event.id} />
       </div>
     </div>

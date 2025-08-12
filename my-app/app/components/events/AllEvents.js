@@ -6,23 +6,46 @@ import { useEffect, useState } from "react";
 
 export default function AllEvents() {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchEvents() {
-      const res = await fetch("/dbStatique/db.json");
-      const data = await res.json();
-      setEvents(data.events || []);
+      try {
+        const res = await fetch("/api/events");
+        if (!res.ok) {
+          throw new Error("Failed to fetch events");
+        }
+        const data = await res.json();
+        setEvents(data);
+      } catch (error) {
+        console.error("error fetching events", error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchEvents();
   }, []);
+
+  const formatDate = (dateString) => {
+    const options = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+    return new Date(dateString).toLocaleDateString("fr-FR", options);
+  };
+
+  if (loading) {
+    return <div className="text-center p-10">Loading events...</div>;
+  }
 
   const half = Math.ceil(events.length / 2);
   const firstRowEvents = events.slice(0, half);
   const secondRowEvents = events.slice(half);
 
   return (
-    <div className="w-full max-w-[1300px] mx-auto p-6">
+    <div className="w-full -mt-10 max-w-[1300px] mx-auto p-6">
       <h2 className="text-3xl font-bold text-center mt-10 mb-8 text-black dark:text-white">
         ALL EVENTS
       </h2>
@@ -45,7 +68,9 @@ export default function AllEvents() {
                   <h3 className="text-lg dark:text-black font-semibold">
                     {event.title}
                   </h3>
-                  <p className="dark:text-black">{event.date}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                    {formatDate(event.date)}
+                  </p>
                   <p className="dark:text-black">{event.location}</p>
                 </div>
               </div>
@@ -72,7 +97,9 @@ export default function AllEvents() {
                   <h3 className="text-lg dark:text-black font-semibold">
                     {event.title}
                   </h3>
-                  <p className="dark:text-black">{event.date}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                    {formatDate(event.date)}
+                  </p>
                   <p className="dark:text-black">{event.location}</p>
                 </div>
               </div>

@@ -6,22 +6,18 @@ import EventFiltered from "./components/events/EventFiltered";
 import { useState } from "react";
 import AllEvents from "./components/events/AllEvents";
 
-export default function HomePage() {
-  const [filters, setFilters] = useState({
-    search: "",
-    location: "",
-    eventType: "",
-  });
-
-  const handleSearch = (newFilters) => {
-    setFilters(newFilters);
-  };
+export default function Home() {
+  const [searchParams, setSearchParams] = useState({});
+  const [activeFilter, setActiveFilter] = useState("");
 
   return (
     <main>
       <Navbar />
-      <Hero onSearch={handleSearch} />
-      <EventFiltered filters={filters} />
+      <Hero
+        onSearch={(params) => setSearchParams(params)}
+        onFilterChange={(filter) => setActiveFilter(filter)}
+      />
+      <EventFiltered searchParams={searchParams} activeFilter={activeFilter} />
       <AllEvents />
     </main>
   );
