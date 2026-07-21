@@ -3,21 +3,20 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
   try {
-    console.log("Attempting to fetch event with ID:", params.id);
+    const { id } = await params;
+    const eventId = Number.parseInt(id, 10);
+
+    if (Number.isNaN(eventId)) {
+      return NextResponse.json({ error: "Invalid event ID" }, { status: 400 });
+    }
 
     const event = await prisma.event.findUnique({
       where: {
-        id: parseInt(params.id),
-      },
-      include: {
-        tickets: true,
+      id: Number(params.id),
       },
     });
 
-    console.log("Raw event data:", event); // Debug log
-
     if (!event) {
-      console.log("No event found with ID:", params.id);
       return NextResponse.json({ error: "Event not found" }, { status: 404 });
     }
 
@@ -34,7 +33,6 @@ export async function GET(request, { params }) {
       tickets: event.tickets,
     };
 
-    console.log("Sending formatted event:", formattedEvent); // Debug log
     return NextResponse.json(formattedEvent);
   } catch (error) {
     console.error("Error details:", error);

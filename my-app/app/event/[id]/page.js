@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 export default function EventDetails() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
+  const [error, setError] = useState(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -18,16 +19,16 @@ export default function EventDetails() {
   useEffect(() => {
     async function fetchEvent() {
       try {
-        console.log("Fetching event with ID:", id);
+        setError(null);
         const res = await fetch(`/api/events/${id}`);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const data = await res.json();
-        console.log("Received event data:", data);
         setEvent(data);
       } catch (error) {
         console.error("Error fetching event:", error);
+        setError("Impossible de charger les informations de cet événement.");
       }
     }
 
@@ -60,6 +61,14 @@ export default function EventDetails() {
     const timer = setInterval(calculateTimeLeft, 1000);
     return () => clearInterval(timer);
   }, [event]);
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <div className="text-xl font-bold text-red-600">{error}</div>
+      </div>
+    );
+  }
 
   if (!event) {
     return (

@@ -167,7 +167,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left mt-0">
           <p className="text-sm sm:text-lg text-gray-400">
-            © 2025 Tapakila. All rights reserved.
+            © 2027 Tapakila. All rights reserved.
           </p>
         </div>
       </div>
